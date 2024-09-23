@@ -32,6 +32,13 @@ return {
         return '%2l:%-2v'
       end
 
+      -- Add a tabline to keep track of buffers
+      local tabline = require 'mini.tabline'
+      tabline.setup { set_vim_settings = true }
+
+      -- Add a startup screen
+      require('mini.starter').setup()
+
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
