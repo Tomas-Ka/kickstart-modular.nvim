@@ -34,10 +34,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Set "jk" as a keybind to exit edit mode
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit edit mode' })
 
--- Set <tab> and <S-tab> to tab between buffers
-vim.keymap.set('n', '<tab>', '<cmd>bnext<CR>', { desc = 'Switch to next buffer' })
-vim.keymap.set('n', 'S-tab', '<cmd>bprev<CR>', { desc = 'Switch to previous buffer' })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
