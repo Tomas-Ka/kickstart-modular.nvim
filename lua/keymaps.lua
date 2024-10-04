@@ -34,6 +34,10 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Set "jk" as a keybind to exit edit mode
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit edit mode' })
 
+-- Set <leader>x to close currently open buffer
+vim.keymap.set('n', '<leader>x', '<cmd>bd<CR>', { desc = 'Close current buffer' })
+
+vim.keymap.set('n', '<leader>sm', '<cmd>lua require"telescope".extensions.metals.commands()<CR>', { desc = 'Open metals run dialogue' })
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
