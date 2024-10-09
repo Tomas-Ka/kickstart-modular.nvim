@@ -19,7 +19,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set(
   'n',
   '<leader>a',
-  [[<cmd>execute "call" "writefile([expand('<cword>')]," "'../vale/config/vocabularies/Programming/accept.txt'," "'a')"<CR>]],
+  [[<cmd>execute "call" "writefile([expand('<cword>')]," "'/home/tom/.config/vale/config/vocabularies/Programming/accept.txt'," "'a')"<CR>]],
   { desc = 'Add word to custom wordlist' }
 )
 
