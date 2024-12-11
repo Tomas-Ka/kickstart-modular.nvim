@@ -55,6 +55,21 @@ return {
         end,
       })
 
+      -- Hyprlang LSP
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter', 'InsertLeave' }, {
+        pattern = { '*.hl', 'hypr*.conf' },
+        callback = function(event)
+          if vim.opt_local.modifiable:get() then
+            print(string.format('starting hyprls for %s', vim.inspect(event)))
+            vim.lsp.start {
+              name = 'hyprlang',
+              cmd = { 'hyprls' },
+              root_dir = vim.fn.getcwd(),
+            }
+          end
+        end,
+      })
+
       local markdownlint = require 'lint.linters.markdownlint-cli2'
       markdownlint.args = {
         '--config',
