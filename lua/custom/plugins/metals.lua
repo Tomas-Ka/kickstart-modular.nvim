@@ -63,7 +63,7 @@ return {
       require('metals').setup_dap()
 
       -- LSP mappings
-      map('n', 'gD', vim.lsp.buf.definition, { desc = 'Jumps to Definition' })
+      map('n', 'M', vim.lsp.buf.definition, { desc = 'Jumps to Definition' })
       map('n', 'K', vim.lsp.buf.hover, { desc = 'Peek at symbol info' })
       map('n', 'gi', vim.lsp.buf.implementation, { desc = 'Lists all symbol implementations' })
       map('n', 'gr', vim.lsp.buf.references, { desc = 'Lists all references to symbol' })
