@@ -33,7 +33,7 @@ return {
       lint.linters_by_ft['inko'] = nil
       lint.linters_by_ft['janet'] = nil
       lint.linters_by_ft['json'] = { 'jsonlint' }
-      lint.linters_by_ft['markdown'] = { 'markdownlint-cli2', 'vale' }
+      lint.linters_by_ft['markdown'] = { 'markdownlint-cli2' } -- , 'vale' }
       lint.linters_by_ft['rst'] = nil
       lint.linters_by_ft['ruby'] = nil
       lint.linters_by_ft['terraform'] = nil
