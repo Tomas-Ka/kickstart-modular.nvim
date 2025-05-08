@@ -39,6 +39,7 @@ return {
       lint.linters_by_ft['terraform'] = nil
       lint.linters_by_ft['text'] = nil
       lint.linters_by_ft['python'] = { 'flake8' }
+      lint.linters_by_ft['go'] = { 'golangcilint' }
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
