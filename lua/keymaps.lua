@@ -22,7 +22,6 @@ vim.keymap.set(
   [[<cmd>execute "call" "writefile([expand('<cword>')]," "'/home/tom/.config/vale/config/vocabularies/Programming/accept.txt'," "'a')"<CR>]],
   { desc = 'Add word to custom wordlist' }
 )
-
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -45,6 +44,10 @@ vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit edit mode' })
 vim.keymap.set('n', '<leader>x', '<cmd>bd<CR>', { desc = 'Close current buffer' })
 
 vim.keymap.set('n', '<leader>sm', '<cmd>lua require"telescope".extensions.metals.commands()<CR>', { desc = 'Open metals run dialogue' })
+
+-- Move selected lines up and down
+vim.keymap.set('v', 'K', ":move '<-2<CR> gv=gv")
+vim.keymap.set('v', 'J', ":move '>+1<CR> gv=gv")
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
