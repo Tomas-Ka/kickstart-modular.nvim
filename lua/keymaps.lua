@@ -46,8 +46,6 @@ vim.keymap.set('n', '<leader>x', '<cmd>bd<CR>', { desc = 'Close current buffer' 
 vim.keymap.set('n', '<leader>sm', '<cmd>lua require"telescope".extensions.metals.commands()<CR>', { desc = 'Open metals run dialogue' })
 
 -- Move selected lines up and down
--- vim.keymap.set('v', 'K', ":move '<-2<CR> gv=gv")
--- vim.keymap.set('v', 'J', ":move '>+1<CR> gv=gv")
 vim.keymap.set('v', 'K', function()
   local lines_to_move = (vim.v.count == 0) and 2 or (vim.v.count + 1)
   return ":move '<-" .. lines_to_move .. '<CR> gv=gv'
