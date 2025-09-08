@@ -22,6 +22,7 @@ vim.keymap.set(
   [[<cmd>execute "call" "writefile([expand('<cword>')]," "'/home/tom/.config/vale/config/vocabularies/Programming/accept.txt'," "'a')"<CR>]],
   { desc = 'Add word to custom wordlist' }
 )
+
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -56,6 +57,9 @@ vim.keymap.set('v', 'J', function()
   return ":move '>+" .. lines_to_move .. '<CR> gv=gv'
 end, { expr = true })
 
+vim.keymap.set('n', '<Tab>', '<cmd>:bn<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<S-Tab>', '<cmd>:bp<CR>', { desc = 'Go to previous buffer' })
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
@@ -67,12 +71,12 @@ end, { expr = true })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
---  See `:help vim.hl.on_yank()`
+--  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.hl.on_yank()
+    vim.highlight.on_yank()
   end,
 })
 

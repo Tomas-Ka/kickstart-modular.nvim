@@ -33,6 +33,7 @@ return {
       },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
+      'nvim-java/nvim-java',
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
@@ -245,6 +246,30 @@ return {
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               -- diagnostics = { disable = { 'missing-fields' } },
+            },
+          },
+        },
+      }
+
+      require('java').setup {
+        -- Your custom jdtls settings goes here
+        jdk = {
+          auto_install = false,
+        },
+      }
+
+      require('lspconfig').jdtls.setup {
+        -- Your custom nvim-java configuration goes here
+        settings = {
+          java = {
+            configuration = {
+              runtimes = {
+                {
+                  name = 'JavaSE-24',
+                  path = '/usr/bin/java',
+                  default = true,
+                },
+              },
             },
           },
         },

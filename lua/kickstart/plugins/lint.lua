@@ -61,7 +61,7 @@ return {
         pattern = { '*.hl', 'hypr*.conf' },
         callback = function(event)
           if vim.opt_local.modifiable:get() then
-            print(string.format('starting hyprls for %s', vim.inspect(event)))
+            -- print(string.format('starting hyprls for %s', vim.inspect(event)))
             vim.lsp.start {
               name = 'hyprlang',
               cmd = { 'hyprls' },
