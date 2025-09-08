@@ -1,3 +1,5 @@
+--WARN: This is currently unused! Look at ./blink-cmp.lua instead
+
 return {
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
