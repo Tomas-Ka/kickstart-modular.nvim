@@ -252,6 +252,7 @@ return {
       }
 
       require('java').setup {
+        -- jdtls = { version = 'v1.46.1' },
         -- Your custom jdtls settings goes here
         jdk = {
           auto_install = false,
@@ -265,7 +266,7 @@ return {
             configuration = {
               runtimes = {
                 {
-                  name = 'JavaSE-24',
+                  name = 'JavaSE-21',
                   path = '/usr/bin/java',
                   default = true,
                 },

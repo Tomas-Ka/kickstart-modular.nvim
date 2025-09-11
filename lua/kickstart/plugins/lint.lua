@@ -73,11 +73,11 @@ return {
       })
 
       local markdownlint = require 'lint.linters.markdownlint-cli2'
-      markdownlint.args = {
-        '--config',
-        '/home/tom/.config/markdownlint/.markdownlint-cli2.yaml',
-        '--',
-      }
+      -- markdownlint.args = {
+      --   '--config',
+      --   '/home/tom/.config/markdownlint/.markdownlint-cli2.yaml',
+      --   '--',
+      -- }
     end,
   },
 }
