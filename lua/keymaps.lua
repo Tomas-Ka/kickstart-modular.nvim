@@ -85,7 +85,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.java',
   desc = 'Organize Imports in java files on save',
   callback = function()
-    print('BufWritePre triggered for', vim.fn.expand '%')
     if not vim.bo.modified then
       print 'returning'
       return
@@ -98,7 +97,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
       },
       apply = true,
     }
-    print 'ran buffPreWrite'
   end,
 })
 -- vim: ts=2 sts=2 sw=2 et
