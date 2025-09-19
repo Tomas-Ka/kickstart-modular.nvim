@@ -85,10 +85,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.java',
   desc = 'Organize Imports in java files on save',
   callback = function()
-    if not vim.bo.modified then
-      print 'returning'
-      return
-    end
     vim.lsp.buf.code_action {
       ---@diagnostic disable-next-line missing-fields
       context = {
