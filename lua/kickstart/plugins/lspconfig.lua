@@ -33,7 +33,7 @@ return {
       },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      'nvim-java/nvim-java',
+      { 'nvim-java/nvim-java', ft = 'java' },
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
@@ -257,10 +257,36 @@ return {
         jdk = {
           auto_install = false,
         },
+        spring_boot_tools = {
+          enable = false,
+          version = '1.59.0',
+        },
+        java_test = {
+          version = '0.43.1',
+        },
       }
 
       require('lspconfig').jdtls.setup {
         -- Your custom nvim-java configuration goes here
+        -- other jdtls settings...
+
+        -- on_attach = function(_, bufnr)
+        --   vim.keymap.set('n', 'gro', function()
+        --     vim.lsp.buf.code_action {
+        --       context = {
+        --         only = { 'source.organizeImports' },
+        --         triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Automatic,
+        --       },
+        --       apply = true,
+        --     }
+        --   end, { buffer = bufnr, desc = 'Organize imports' })
+        --
+        --   -- Example: Organize imports
+        --   -- vim.keymap.set('n', '<leader>oi', function()
+        --   --   vim.cmd 'JavaOrganizeImports'
+        --   -- end, { buffer = bufnr, desc = 'Organize imports' })
+        -- end,
+
         settings = {
           java = {
             configuration = {

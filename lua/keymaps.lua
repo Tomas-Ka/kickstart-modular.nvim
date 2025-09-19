@@ -80,4 +80,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Organize and fix imports in java file when saved.
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.java',
+  desc = 'Organize Imports in java files on save',
+  callback = function()
+    print('BufWritePre triggered for', vim.fn.expand '%')
+    if not vim.bo.modified then
+      print 'returning'
+      return
+    end
+    vim.lsp.buf.code_action {
+      ---@diagnostic disable-next-line missing-fields
+      context = {
+        only = { 'source.organizeImports' },
+        triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Automatic,
+      },
+      apply = true,
+    }
+    print 'ran buffPreWrite'
+  end,
+})
 -- vim: ts=2 sts=2 sw=2 et
