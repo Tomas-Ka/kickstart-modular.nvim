@@ -80,6 +80,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Toggle to show/hide diagnostic messages
+vim.keymap.set('n', '<leader>td', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = '[T]oggle [D]iagnostics' })
+
 -- Organize and fix imports in java file when saved.
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.java',

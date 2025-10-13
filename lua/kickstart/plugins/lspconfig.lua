@@ -177,6 +177,16 @@ return {
         end,
       })
 
+      local function fmt_diagnostics(diagnostic)
+        local diagnostic_message = {
+          [vim.diagnostic.severity.ERROR] = diagnostic.message,
+          [vim.diagnostic.severity.WARN] = diagnostic.message,
+          [vim.diagnostic.severity.INFO] = diagnostic.message,
+          [vim.diagnostic.severity.HINT] = diagnostic.message,
+        }
+        return diagnostic_message[diagnostic.severity]
+      end
+
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
@@ -194,15 +204,11 @@ return {
         virtual_text = {
           source = 'if_many',
           spacing = 2,
-          format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
-          end,
+          format = fmt_diagnostics,
+        },
+        virtual_lines = {
+          current_line = true,
+          format = fmt_diagnostics,
         },
       }
 
@@ -225,6 +231,7 @@ return {
         -- clangd = {},
         gopls = {},
         -- pyright = {},
+        basedpyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
