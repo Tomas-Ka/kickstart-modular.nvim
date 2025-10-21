@@ -232,7 +232,9 @@ return {
         gopls = {},
         -- pyright = {},
         basedpyright = {},
-        -- rust_analyzer = {},
+        -- rust_analyzer = {
+        --   enabled = false,
+        -- },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -273,7 +275,7 @@ return {
         },
       }
 
-      require('lspconfig').jdtls.setup {
+      vim.lsp.config('jdtls', {
         -- Your custom nvim-java configuration goes here
         -- other jdtls settings...
 
@@ -307,7 +309,7 @@ return {
             },
           },
         },
-      }
+      })
 
       -- Ensure the servers and tools above are installed
       --
@@ -338,7 +340,7 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            vim.lsp.config(server_name, server)
           end,
         },
       }
