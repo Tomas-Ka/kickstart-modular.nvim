@@ -231,7 +231,9 @@ return {
         -- clangd = {},
         gopls = {},
         -- pyright = {},
-        basedpyright = {},
+        basedpyright = {
+          maximumLineLength = 100,
+        },
         -- rust_analyzer = {
         --   enabled = false,
         -- },

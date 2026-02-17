@@ -43,7 +43,7 @@ return {
       formatters = {
         black = {
           -- set the black line length to be the same as the linter
-          prepend_args = { '-l', '79' },
+          prepend_args = { '-l', '100' },
         },
       },
     },
