@@ -12,7 +12,7 @@ return {
           expandtab = false,
         },
         {
-          filetypes = { 'lua', 'java', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'json', 'yaml' },
+          filetypes = { 'lua', 'java', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'json', 'yaml', 'svelte' },
           config = {
             tabwidth = 2,
           },
