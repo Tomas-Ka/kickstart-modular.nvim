@@ -101,20 +101,6 @@ return {
           --  the definition of its *type*, not where it was *defined*.
           map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
-          -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-          ---@param client vim.lsp.Client
-          ---@param method vim.lsp.protocol.Method
-          ---@param bufnr? integer some lsp support methods only in specific files
-          ---@return boolean
-          -- local function client_supports_method(client, method, bufnr)
-          --   return client:supports_method(method, bufnr)
-            -- if vim.fn.has 'nvim-0.11' == 1 then
-            --   return client:supports_method(method, bufnr)
-            -- else
-            --   return client.supports_method(method, { bufnr = bufnr })
-            -- end
-          -- end
-
           map('K', vim.lsp.buf.hover, 'Pee[k] at symbol info', 'n')
 
           -- The following two autocommands are used to highlight references of the
@@ -196,7 +182,7 @@ return {
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       -- local capabilities = require('blink.cmp').get_lsp_capabilities()
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 
       -- end of block
       --
@@ -254,6 +240,9 @@ return {
           settings = {
             Lua = {
               format = { enable = false }, -- Disable formatting (formatting is done by stylua)
+              diagnostics = {
+                globals = { "vim" }
+              },
             },
           },
         },
@@ -274,26 +263,26 @@ return {
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       -- block that could be replaced
-      require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            vim.lsp.config(server_name, server)
-          end,
-        },
-      }
+      -- require('mason-lspconfig').setup {
+      --   ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+      --   automatic_installation = false,
+      --   handlers = {
+      --     function(server_name)
+      --       local server = servers[server_name] or {}
+      --       -- This handles overriding only values explicitly passed
+      --       -- by the server configuration above. Useful when disabling
+      --       -- certain features of an LSP (for example, turning off formatting for ts_ls)
+      --       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+      --       vim.lsp.config(server_name, server)
+      --     end,
+      --   },
+      -- }
       -- end of block
 
-      -- for name, server in pairs(servers) do
-      --   vim.lsp.config(name, server)
-      --   vim.lsp.enable(name)
-      -- end
+      for name, server in pairs(servers) do
+        vim.lsp.config(name, server)
+        vim.lsp.enable(name)
+      end
     end,
   },
 }
