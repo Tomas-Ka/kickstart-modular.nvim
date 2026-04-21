@@ -1,10 +1,12 @@
-return {
+-- Linting
 
-  { -- Linting
-    'mfussenegger/nvim-lint',
-    event = { 'BufReadPre', 'BufNewFile' },
-    config = function()
-      local lint = require 'lint'
+---@module 'lazy'
+---@type LazySpec
+return {
+  'mfussenegger/nvim-lint',
+  event = { 'BufReadPre', 'BufNewFile' },
+  config = function()
+    local lint = require 'lint'
       -- lint.linters_by_ft = lint.linters_by_ft or {}
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
       -- instead set linters_by_ft like this:
@@ -82,5 +84,4 @@ return {
       table.insert(flake8.args, '--max-line-length ')
       table.insert(flake8.args, '100')
     end,
-  },
-}
+  }
