@@ -26,6 +26,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- todo keymaps
 vim.keymap.set('n', '<leader>d', '<cmd>TodoQuickFix<CR>', { desc = 'Open todo quickfix list' })
 
+-- map leader + u to the undo tree
+vim.keymap.set('n', '<leader>u', '<cmd>Undotree<CR>', { desc = 'Open Undo Tree' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -93,15 +96,11 @@ vim.keymap.set('n', '<S-Tab>', '<cmd>:bp<CR>', { desc = 'Go to previous buffer' 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = function() vim.highlight.on_yank() end,
 })
 
 -- Toggle to show/hide diagnostic messages
-vim.keymap.set('n', '<leader>td', function()
-  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { desc = '[T]oggle [D]iagnostics' })
+vim.keymap.set('n', '<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = '[T]oggle [D]iagnostics' })
 
 -- Organize and fix imports in java file when saved.
 vim.api.nvim_create_autocmd('BufWritePre', {
