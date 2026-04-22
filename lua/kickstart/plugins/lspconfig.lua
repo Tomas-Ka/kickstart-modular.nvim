@@ -206,7 +206,7 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         svelte = {},
-        tailwindcss = {},
+        -- tailwindcss = {},
 
         ----- Lua -----
         stylua = {}, -- Used to format Lua code

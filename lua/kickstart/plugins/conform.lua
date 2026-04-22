@@ -40,8 +40,8 @@ return {
         java = { 'google-java-format' },
         xml = { 'xmlformatter' },
         lss = { 'xmlformatter' },
-        javascript = { 'prettier' },
-        typescript = { 'prettier' },
+        javascript = { 'prettierd' },
+        typescript = { 'prettierd' },
         markdown = { 'markdownlint-cli2' },
         lua = { 'stylua' },
         --
