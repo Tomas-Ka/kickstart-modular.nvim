@@ -62,9 +62,8 @@ return {
     -- Hyprlang LSP
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter', 'InsertLeave' }, {
       pattern = { '*.hl', 'hypr*.conf' },
-      callback = function(event)
+      callback = function(_)
         if vim.opt_local.modifiable:get() then
-          -- print(string.format('starting hyprls for %s', vim.inspect(event)))
           vim.lsp.start {
             name = 'hyprlang',
             cmd = { 'hyprls' },
