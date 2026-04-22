@@ -43,6 +43,8 @@ return {
       lint.linters_by_ft['python'] = { 'flake8' }
       lint.linters_by_ft['go'] = { 'golangcilint' }
       lint.linters_by_ft['java'] = { 'checkstyle' }
+      lint.linters_by_ft['javascript'] = { 'eslint_d' }
+      lint.linters_by_ft['typescript'] = { 'eslint_d' }
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
@@ -80,6 +82,7 @@ return {
       --   '/home/tom/.config/markdownlint/.markdownlint-cli2.yaml',
       --   '--',
       -- }
+
       local flake8 = require 'lint.linters.flake8'
       table.insert(flake8.args, '--max-line-length ')
       table.insert(flake8.args, '100')

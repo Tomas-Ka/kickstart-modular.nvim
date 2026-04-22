@@ -31,9 +31,6 @@ return {
       { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
-      vim.lsp.config('*', {
-        capabilities = vim.lsp.protocol.make_client_capabilities(),
-      })
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -191,25 +188,28 @@ return {
       --  See `:help lsp-config` for information about keys and how to configure
       ---@type table<string, vim.lsp.Config>
       local servers = {
-        -- clangd = {},
+        -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
+
+        ----- Go -----
         gopls = {},
+
+        ----- Pyton -----
         -- pyright = {},
         basedpyright = {
           maximumLineLength = 100,
         },
-        -- rust_analyzer = {
-        --   enabled = false,
-        -- },
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
+
+        ----- Web -----
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
+        svelte = {},
+        tailwindcss = {},
 
+        ----- Lua -----
         stylua = {}, -- Used to format Lua code
-
         -- Special Lua Config, as recommended by neovim help docs
         lua_ls = {
           on_init = function(client)
@@ -241,7 +241,7 @@ return {
             Lua = {
               format = { enable = false }, -- Disable formatting (formatting is done by stylua)
               diagnostics = {
-                globals = { "vim" }
+                globals = { 'vim' },
               },
             },
           },
@@ -261,23 +261,6 @@ return {
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      -- block that could be replaced
-      -- require('mason-lspconfig').setup {
-      --   ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-      --   automatic_installation = false,
-      --   handlers = {
-      --     function(server_name)
-      --       local server = servers[server_name] or {}
-      --       -- This handles overriding only values explicitly passed
-      --       -- by the server configuration above. Useful when disabling
-      --       -- certain features of an LSP (for example, turning off formatting for ts_ls)
-      --       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-      --       vim.lsp.config(server_name, server)
-      --     end,
-      --   },
-      -- }
-      -- end of block
 
       for name, server in pairs(servers) do
         vim.lsp.config(name, server)

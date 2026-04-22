@@ -40,6 +40,10 @@ return {
         java = { 'google-java-format' },
         xml = { 'xmlformatter' },
         lss = { 'xmlformatter' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        markdown = { 'markdownlint-cli2' },
+        lua = { 'stylua' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
